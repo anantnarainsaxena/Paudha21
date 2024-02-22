@@ -29,11 +29,6 @@ struct PaudhaTabView: View {
             ChatView()
                 .tabItem { Image(systemName: "camera.macro")
                 Text("Pixxie")}
-            Shop()
-                .tabItem { Image(systemName: "cart")
-                Text("Shop")}
-            
-                
         }
         }
         

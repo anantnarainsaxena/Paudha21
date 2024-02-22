@@ -12,6 +12,7 @@ struct AddBuddyView: View {
     @EnvironmentObject var plantCollection: PlantCollection
     @State private var buddyNickname = ""
     @State private var buddyType = ""
+    @State private var buddyDesc = ""
     @State private var selectedImage: UIImage?
     @State private var tempSelectedImage: UIImage?
     @State private var showImagePicker = false
@@ -25,6 +26,10 @@ struct AddBuddyView: View {
 
             TextField("Buddy Type", text: $buddyType)
                 .padding()
+            
+            TextField("Buddy's Story", text: $buddyDesc)
+                .padding()
+            
 
             Button(action: {
                 showImagePicker = true
@@ -39,16 +44,17 @@ struct AddBuddyView: View {
                 Image(uiImage: selectedImage)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 100, height: 100)
+                    .frame(width: 250, height: 250)
             }
 
             Button("Save Buddy") {
                 if let selectedImage = tempSelectedImage {
                     let imageName = UUID().uuidString
                     saveImageToDocumentDirectory(image: selectedImage, imageName: imageName)
-                    plantCollection.plants.append(Plant(imageName: imageName, nickname: buddyNickname, type: buddyType))
+                    plantCollection.plants.append(Plant(imageName: imageName, nickname: buddyNickname, type: buddyType, description: buddyDesc))
                     buddyNickname = ""
                     buddyType = ""
+                    buddyDesc = ""
                     tempSelectedImage = nil
                     showImagePicker = false
                     

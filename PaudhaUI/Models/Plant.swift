@@ -12,4 +12,5 @@ struct Plant: Identifiable {
         var imageName: String
         var nickname: String
         var type: String
+    var description: String
 }

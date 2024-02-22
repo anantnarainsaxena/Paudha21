@@ -9,6 +9,9 @@ struct Home: View {
     @State private var isAddingBuddy = false
     @State private var isSideMenuPresented = false
     @State private var currentQuote: String = QuoteKit.getDailyPlantQuote()
+    @State private var selectedPlant: Plant?
+    
+    
     
     func loadImageFromDocumentDirectory(imageName: String) -> UIImage? {
         let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!

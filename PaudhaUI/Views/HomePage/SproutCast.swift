@@ -100,6 +100,8 @@ struct WeatherSymbolView: View {
             return AnyView(Image(systemName: "sun.max").resizable().frame(width: 130,height: 100).foregroundColor(.black))
         case "Clouds":
             return AnyView(Image(systemName: "cloud").resizable().frame(width: 130,height: 100).foregroundColor(.black))
+        case "Mist":
+            return AnyView(Image(systemName: "aqi.medium").resizable().frame(width: 130,height: 110).foregroundColor(.black))
         case "Rain":
             return AnyView(Image(systemName: "cloud.rain").resizable().frame(width: 130,height: 100).foregroundColor(.black))
         case "Haze":
