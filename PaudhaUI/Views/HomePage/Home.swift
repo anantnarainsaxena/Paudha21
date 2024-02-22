@@ -10,6 +10,8 @@ struct Home: View {
     @State private var isSideMenuPresented = false
     @State private var currentQuote: String = QuoteKit.getDailyPlantQuote()
     @State private var selectedPlant: Plant?
+    @State private var selectedImage: UIImage?
+    @State private var isShowingImagePicker = false
     
     
     
@@ -31,10 +33,39 @@ struct Home: View {
             ScrollView {
                 
                 VStack {
-                    Image("exampleIcon")
-                        .resizable()
-                        .frame(width: 100, height: 100)
-                        .clipShape(Circle())
+
+                    
+                    ZStack {
+                                            // Display selected image or default icon
+                                            if let selectedImage = selectedImage {
+                                                Image(uiImage: selectedImage)
+                                                    .resizable()
+                                                    .frame(width: 100, height: 100)
+                                                    .clipShape(Circle())
+                                            } else {
+                                                Image("exampleIcon")
+                                                    .resizable()
+                                                    .frame(width: 100, height: 100)
+                                                    .clipShape(Circle())
+                                            }
+                                            
+                                            // Camera button
+                                            Button(action: {
+                                                isShowingImagePicker = true // Show image picker
+                                            }) {
+                                                Image(systemName: "camera")
+                                                    .resizable()
+                                                    .foregroundColor(.blue)
+                                                    .frame(width: 20, height: 15)
+                                                    .padding(5)
+                                                    .background(Color.white.opacity(0.5))
+                                                    .clipShape(Circle())
+                                                    .offset(x: 25, y: 40)
+                                            }
+                                        }
+                                        .sheet(isPresented: $isShowingImagePicker) {
+                                            ImagePicker1(selectedImage: $selectedImage, isImagePickerPresented: $isShowingImagePicker)
+                                        }
                     Text("Hello Preksha \nGood Evening!!")
                         .font(.system(size: 30, weight: .heavy, design: .rounded))
                         .foregroundColor(.black)
@@ -92,42 +123,49 @@ struct Home: View {
                              }
                          }
                 VStack {
-                    Text("My Collection")
-                        .frame(width: 350, alignment: .leading)
-                        .font(.title)
-                        .fontWeight(.bold)
-                    
-                    ScrollView(.horizontal) {
-                        HStack(spacing: 20) {
-                            ForEach(plantCollection.plants) { plant in
-                                if let uiImage = loadImageFromDocumentDirectory(imageName: plant.imageName) {
-                                    VStack {
-                                        Image(uiImage: uiImage)
-                                            .resizable()
-                                            .aspectRatio(contentMode: .fill)
-                                            .frame(width: 120, height: 150)
-                                            .cornerRadius(10)
-                                            .overlay(
-                                                RoundedRectangle(cornerRadius: 10)
-                                                    .stroke(Color.primary, lineWidth: 1)
-                                            )
-                                        Text(plant.nickname)
-                                            .font(.caption)
-                                            .foregroundColor(.primary)
-                                            .multilineTextAlignment(.center)
-                                            .lineLimit(2)
-                                            .padding(.vertical, 4)
+                                    Text("My Collection")
+                                        .frame(width: 350, alignment: .leading)
+                                        .font(.title)
+                                        .fontWeight(.bold)
+                                    
+                                    ScrollView(.horizontal) {
+                                        HStack(spacing: 20) {
+                                            ForEach(plantCollection.plants) { plant in
+                                                Button(action: {
+                                                    selectedPlant = plant
+                                                }) {
+                                                    VStack {
+                                                        if let uiImage = loadImageFromDocumentDirectory(imageName: plant.imageName) {
+                                                            Image(uiImage: uiImage)
+                                                                .resizable()
+                                                                .aspectRatio(contentMode: .fill)
+                                                                .frame(width: 120, height: 150)
+                                                                .cornerRadius(10)
+                                                                .overlay(
+                                                                    RoundedRectangle(cornerRadius: 10)
+                                                                        .stroke(Color.primary, lineWidth: 1)
+                                                                )
+                                                            Text(plant.nickname)
+                                                                .font(.caption)
+                                                                .foregroundColor(.primary)
+                                                                .multilineTextAlignment(.center)
+                                                                .lineLimit(2)
+                                                                .padding(.vertical, 4)
+                                                        } else {
+                                                            Text("Error loading image")
+                                                        }
+                                                    }
+                                                    .padding(8)
+                                                    .background(Color.white.opacity(0.5))
+                                                    .cornerRadius(15)
+                                                }
+                                                .sheet(item: $selectedPlant) { plant in
+                                                    PlantDetailView(plant: plant)
+                                                }
+                                            }
+                                        }.padding()
                                     }
-                                    .padding(8)
-                                    .background(Color.white.opacity(0.5))
-                                    .cornerRadius(15)
-                                } else {
-                                    Text("Error loading image")
-                                }
-                            }
-                        }.padding()
-                    }
-                }.environmentObject(plantCollection)
+                                }.environmentObject(plantCollection)
                 
                 SproutCast()
             }

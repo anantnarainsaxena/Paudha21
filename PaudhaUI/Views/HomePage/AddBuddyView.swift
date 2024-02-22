@@ -70,6 +70,7 @@ struct AddBuddyView: View {
             .padding()
         }
         .padding()
+        
     }
 
     // Function to save image to the document directory
