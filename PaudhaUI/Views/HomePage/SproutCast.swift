@@ -6,13 +6,16 @@
 //
 
 import SwiftUI
+import CoreLocation
 
 struct SproutCast: View {
     @State private var weatherData: WeatherResponse?
         @State private var isLoading = true
+    @State private var city = "Chennai"
         
         func fetchWeather() {
-            guard let url = URL(string: "https://api.openweathermap.org/data/2.5/weather?q=Kochi&appid=6fa3672999a3ca2632e5e9da79223e4c&units=metric") else {
+            guard let encodedCity = city.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+             let url = URL(string: "https://api.openweathermap.org/data/2.5/weather?q=\(encodedCity)&appid=6fa3672999a3ca2632e5e9da79223e4c&units=metric") else {
                 print("Invalid URL")
                 return
             }
@@ -40,6 +43,12 @@ struct SproutCast: View {
                     .frame(width: 350, alignment: .leading)
                     .font(.title)
                     .fontWeight(.bold)
+                TextField("Enter city", text: $city, onCommit: {
+                                // Fetch weather when user hits return
+                                fetchWeather()
+                            })
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .padding()
                 
                 if isLoading {
                     ProgressView("Loading...")
@@ -100,6 +109,7 @@ struct WeatherSymbolView: View {
         }
     }
 }
+
 struct PlantCareTips: View {
     let weatherCondition: String
     
@@ -132,6 +142,7 @@ struct PlantCareTips: View {
         }
     }
 }
+
 
 
 #Preview {

@@ -33,6 +33,7 @@
 		1685F0552B56CCC800D5984B /* GreenGuardian.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1685F0542B56CCC800D5984B /* GreenGuardian.swift */; };
 		1685F0572B56CCDA00D5984B /* PaudhaTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1685F0562B56CCDA00D5984B /* PaudhaTabView.swift */; };
 		1685F0592B56CCEE00D5984B /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1685F0582B56CCEE00D5984B /* SearchView.swift */; };
+		16D34E052B8662D600F5CAC4 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D34E042B8662D600F5CAC4 /* LocationManager.swift */; };
 		7F178BA22B7B46FA00A9F0B1 /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F178BA12B7B46FA00A9F0B1 /* Reminder.swift */; };
 		7F178BA42B7B471B00A9F0B1 /* ReminderStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F178BA32B7B471B00A9F0B1 /* ReminderStore.swift */; };
 		7F178BA62B7B473500A9F0B1 /* RemindersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F178BA52B7B473500A9F0B1 /* RemindersView.swift */; };
@@ -83,6 +84,7 @@
 		1685F0542B56CCC800D5984B /* GreenGuardian.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreenGuardian.swift; sourceTree = "<group>"; };
 		1685F0562B56CCDA00D5984B /* PaudhaTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaudhaTabView.swift; sourceTree = "<group>"; };
 		1685F0582B56CCEE00D5984B /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		16D34E042B8662D600F5CAC4 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		7F178BA12B7B46FA00A9F0B1 /* Reminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reminder.swift; sourceTree = "<group>"; };
 		7F178BA32B7B471B00A9F0B1 /* ReminderStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderStore.swift; sourceTree = "<group>"; };
 		7F178BA52B7B473500A9F0B1 /* RemindersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindersView.swift; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 				160532FC2B598952007D6708 /* SwipeableCardStackView.swift */,
 				160532FE2B598986007D6708 /* CardStackView.swift */,
 				160533022B59951D007D6708 /* CardView.swift */,
+				16D34E042B8662D600F5CAC4 /* LocationManager.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -354,6 +357,7 @@
 				7FAC23572B8342C3007338DD /* FeedbackView.swift in Sources */,
 				165A0DDE2B85CBF90030A760 /* WeatherResponse.swift in Sources */,
 				7F178BA82B7B475400A9F0B1 /* ReminderSummaryView.swift in Sources */,
+				16D34E052B8662D600F5CAC4 /* LocationManager.swift in Sources */,
 				1685F0532B56CCB900D5984B /* Shop.swift in Sources */,
 				1685F0592B56CCEE00D5984B /* SearchView.swift in Sources */,
 				7FAC23592B8342DA007338DD /* ContactAndSocialView.swift in Sources */,
